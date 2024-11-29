@@ -5,7 +5,8 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.common.exceptions import (ElementNotVisibleException,
+                                        ElementNotSelectableException)
 
 @allure.title("App.vwo.com- Explicit Wait")
 @allure.description("Verify that App.vwo.com- Explicit Wait")
@@ -21,7 +22,7 @@ def test_5():
     submit_btn_web_element = driver.find_element(By.ID, "js-login-btn")
     submit_btn_web_element.click()
 
-    ignore_list = [ElementNotvisibleException, ElementNotSelectableException]
+    ignore_list = [ElementNotVisibleException, ElementNotSelectableException]
     (WebDriverWait(driver=driver, poll_frequency=1, timeout=5, ignored_exceptions=ignore_list).until(EC.visibility_of_element_located((By.CLASS_NAME,"notification-box-description"))))
 
     error_message_web_element = driver.find_element(By.CLASS_NAME,"notification-box-description")
